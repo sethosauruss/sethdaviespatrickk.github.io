@@ -1,0 +1,309 @@
+/* ===========================================================
+   Seth Davies-Patrick — Portfolio
+   Design tokens
+   =========================================================== */
+:root {
+  --bg:        #12161c;
+  --bg-raised: #171c24;
+  --line:      #262d38;
+  --text:      #e7e9ec;
+  --text-dim:  #a7adb8;
+  --meta:      #8b93a1;
+  --copper:    #d98e3f;
+  --copper-dim:#8a5d2c;
+  --teal:      #5fa8a0;
+
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --max-w: 760px;
+  --gap: 1.5rem;
+}
+
+@media (prefers-color-scheme: light) {
+  /* Site is intentionally dark-first (lab/rack aesthetic).
+     Still respect light preference with a softened version. */
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--copper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--copper-dim);
+}
+a:hover { border-bottom-color: var(--copper); }
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 0.6em 0;
+}
+h1 { font-size: clamp(2rem, 5vw, 3rem); }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.1rem; }
+
+p { margin: 0 0 1em 0; max-width: 68ch; }
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--meta);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Layout shell ---------- */
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+header.site-header {
+  border-bottom: 1px solid var(--line);
+  padding: 1.4rem 0;
+}
+header.site-header .wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.site-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--text);
+  border-bottom: none;
+}
+.site-title:hover { color: var(--copper); }
+
+nav.site-nav {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+nav.site-nav a { margin-right: 1.2rem; }
+nav.site-nav a:last-child { margin-right: 0; }
+nav.site-nav a {
+  color: var(--text-dim);
+  border-bottom: none;
+  font-size: 0.95rem;
+}
+nav.site-nav a:hover,
+nav.site-nav a[aria-current="page"] {
+  color: var(--copper);
+}
+
+main {
+  padding: 3rem 0 5rem 0;
+}
+
+footer.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 0;
+}
+footer.site-footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+footer.site-footer p { margin: 0; }
+
+/* ---------- Hero ---------- */
+.hero {
+  padding: 1rem 0 3rem 0;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 3rem;
+}
+.hero .mono { display: block; margin-bottom: 0.8rem; }
+.hero h1 { margin-bottom: 0.5rem; }
+.hero .lede {
+  color: var(--text-dim);
+  font-size: 1.15rem;
+  max-width: 56ch;
+}
+.hero .links {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.hero .links a { margin-right: 1.5rem; }
+.hero .links a:last-child { margin-right: 0; }
+
+/* ---------- Rack-unit sections ----------
+   Content is organised as numbered rack units (U1, U2, ...),
+   mirroring the physical 6U rack build. */
+.unit {
+  position: relative;
+  padding: 2.2rem 0 2.2rem 3.2rem;
+  border-top: 1px solid var(--line);
+}
+.unit:first-of-type { border-top: none; }
+.unit .unit-tag {
+  position: absolute;
+  left: 0;
+  top: 2.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--copper);
+  border: 1px solid var(--copper-dim);
+  border-radius: 3px;
+  padding: 0.15rem 0.4rem;
+}
+.unit h2 { margin-bottom: 0.9rem; }
+
+/* ---------- Cards (project index) ---------- */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-raised);
+}
+.card .mono { margin-bottom: 0.5rem; }
+.card h3 { margin-bottom: 0.5rem; }
+.card h3 a {
+  color: var(--text);
+  border-bottom: none;
+}
+.card h3 a:hover { color: var(--copper); }
+.card p { margin-bottom: 0.6rem; color: var(--text-dim); }
+
+.status {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 3px;
+  border: 1px solid;
+  display: inline-block;
+}
+.status--live   { color: var(--teal);   border-color: var(--teal); }
+.status--wip    { color: var(--copper); border-color: var(--copper-dim); }
+.status--planned{ color: var(--meta);   border-color: var(--line); }
+
+/* ---------- Skills ---------- */
+.skill-group {
+  margin-bottom: 1.8rem;
+}
+.skill-group h3 {
+  color: var(--copper);
+  margin-bottom: 0.5rem;
+}
+.skill-group ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-group li {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.25rem 0.6rem;
+}
+
+/* ---------- Timeline / Now ---------- */
+.now-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-left: 1px solid var(--line);
+}
+.now-list li {
+  position: relative;
+  padding: 0 0 1.4rem 1.4rem;
+}
+.now-list li::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 0.4rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--copper);
+}
+.now-list .date {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--meta);
+  margin-bottom: 0.2rem;
+}
+
+/* ---------- Contact ---------- */
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.contact-list li {
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+}
+.contact-list li:first-child { border-top: none; }
+.contact-list .label {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--meta);
+  width: 90px;
+  flex-shrink: 0;
+}
+
+/* ---------- Utility ---------- */
+.btn {
+  display: inline-block;
+  border: 1px solid var(--copper);
+  color: var(--copper);
+  border-bottom: 1px solid var(--copper);
+  padding: 0.5rem 1rem;
+  border-radius: 3px;
+  font-size: 0.95rem;
+}
+.btn:hover {
+  background: var(--copper);
+  color: var(--bg);
+}
+
+@media (max-width: 560px) {
+  .unit { padding-left: 2.4rem; }
+  .unit .unit-tag { font-size: 0.72rem; }
+}
